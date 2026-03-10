@@ -1,0 +1,199 @@
+@use '@/styles/index.scss' as *;
+
+.container {
+  @include flex-center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 527px;
+
+  padding: 6px;
+  background: $color-white;
+  border-radius: $radius-xxl;
+
+  &__content {
+    @include flex-column(32px);
+    align-items: center;
+
+    padding: 48px;
+    background: $bg-color;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-card;
+  }
+}
+
+.logo {
+  width: 52px;
+  object-fit: contain;
+}
+
+.title {
+  font-family: $font-primary;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 110%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: $color-title;
+
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-family: $font-primary;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 150%;
+  text-align: center;
+  color: $color-sub-title;
+}
+
+.form {
+  width: 100%;
+  @include flex-column(20px);
+}
+
+.inputGroup {
+  @include flex-column(6px);
+}
+
+.label {
+  font-family: $font-primary;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  color: $color-title;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px 16px;
+  border-radius: $radius-lg;
+  border: 1.5px solid $color-gray-300;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus-within {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba(36, 46, 219, 0.1);
+  }
+  &__text {
+    @include input-text;
+    font-size: 18px;
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px $bg-color inset;
+      -webkit-text-fill-color: $color-title;
+      transition: background-color 5000s ease-in-out;
+    }
+  }
+}
+.input:hover {
+    border-color: $color-gray-400;
+  }
+.clearIcon {
+  cursor: pointer;
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+
+  font-size: 16px;
+  color: $color-gray-500;
+}
+
+.checkboxIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.hiddenCheckbox {
+  display: none;
+}
+.error_block {
+    min-height: 20px;
+}
+.button {
+    height: 54px;
+  
+    background: $color-primary;
+    color: $color-white;
+  
+    font-size: 18px;
+    font-weight: 600;
+  
+    border-radius: $radius-lg;
+  
+    cursor: pointer;
+    transition: all 0.2s ease;
+  
+    &:hover {
+      background: $color-primary-light;
+      transform: translateY(-1px);
+    }
+  
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  .inputError {
+    border-color: $color-danger;
+    animation: shake 0.25s ease;
+  }
+  
+  .errorText {
+    font-size: 14px;
+    color: $color-danger;
+  }
+  .input:focus-within {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba(36, 46, 219, 0.1);
+  }
+  
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
+  }
+@include mobile {
+
+  .card__content {
+    padding: 32px 24px;
+    gap: 24px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .form {
+    gap: 16px;
+  }
+
+  .input {
+    padding: 12px 14px;
+
+    &__text {
+      font-size: 16px;
+    }
+  }
+
+  .button {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,27 @@
+@use "./fonts.scss";
+@use "./variables.scss";
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  background: #f9f9f9;
+  color: var(--color-black);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+input {
+  font-family: inherit;
+}

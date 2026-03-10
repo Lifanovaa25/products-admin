@@ -1,0 +1,78 @@
+:root {
+    /* Fonts */
+    --font-primary: "Inter", sans-serif;
+    --font-secondary: "Open Sans", sans-serif;
+    --font-heading: "Cairo", sans-serif;
+    --font-mono: "Roboto Mono", monospace;
+    --font-system: "Roboto", sans-serif;
+  
+    /* Colors */
+    --color-white: #ffffff;
+    --color-black: #222222;
+  
+    --color-gray-100: #f6f6f6;
+    --color-gray-200: #f3f3f3;
+    --color-gray-300: #ececeb;
+    --color-gray-400: #b2b3b9;
+    --color-gray-500: #969b9f;
+  
+    --color-primary: #242edb;
+    --color-primary-light: #797fea;
+  
+    --color-danger: #f11010;
+    --bg-color: #f9f9f9;
+    --color-title: #232323;
+    --color-sub-title: #e0e0e0;
+    
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 34px;
+    --radius-xxl: 40px;
+  
+    /* Shadows */
+    --shadow-card: 0px 24px 32px rgba(0, 0, 0, 0.04);
+    --shadow-soft: 0px 8px 8px rgba(54, 122, 255, 0.03);
+  
+    /* Layout */
+    --container-width: 1920px;
+  }
+  // Fonts
+$font-primary: var(--font-primary);
+$font-secondary: var(--font-secondary);
+$font-heading: var(--font-heading);
+$font-mono: var(--font-mono);
+$font-system: var(--font-system);
+
+// Colors
+$color-white: var(--color-white);
+$color-black: var(--color-black);
+
+$color-gray-100: var(--color-gray-100);
+$color-gray-200: var(--color-gray-200);
+$color-gray-300: var(--color-gray-300);
+$color-gray-400: var(--color-gray-400);
+$color-gray-500: var(--color-gray-500);
+
+$color-primary: var(--color-primary);
+$color-primary-light: var(--color-primary-light);
+
+$color-danger: var(--color-danger);
+
+// Radius
+$radius-sm: var(--radius-sm);
+$radius-md: var(--radius-md);
+$radius-lg: var(--radius-lg);
+$radius-xl: var(--radius-xl);
+$radius-xxl: var(--radius-xxl);
+
+// Shadows
+$shadow-card: var(--shadow-card);
+$shadow-soft: var(--shadow-soft);
+
+// Layout
+$container-width: var(--container-width);
+$bg-color: var(--bg-color);
+$color-title: var(--color-title);
+$color-sub-title: var(--color-sub-title);

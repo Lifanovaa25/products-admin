@@ -1,0 +1,38 @@
+.page {
+    padding: 30px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    margin-bottom: 30px;
+  }
+  
+  .title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 24px;
+  }
+  
+  .search {
+    width: 600px;
+    height: 48px;
+  
+    background: var(--color-gray-200);
+    border-radius: 8px;
+    border: none;
+  
+    padding: 0 20px;
+  }
+  
+  .addButton {
+    background: var(--color-primary);
+    color: white;
+  
+    height: 42px;
+    padding: 0 20px;
+  
+    border-radius: 6px;
+  }

@@ -1,0 +1,30 @@
+@use './variables.scss' as *;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column($gap: 0) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin input-text {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: $font-primary;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: $color-title;
+  width: 100%;
+}
+
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
