@@ -4,8 +4,9 @@ import axios from "axios"
 export const useAuth = () => {
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+
   const [token, setToken] = useState<string | null>(() => {
-    return localStorage.getItem("token") || sessionStorage.getItem("token") || null
+    return localStorage.getItem("token") || sessionStorage.getItem("token")
   })
 
   const login = async (username: string, password: string, remember: boolean) => {
@@ -13,8 +14,13 @@ export const useAuth = () => {
       setIsLoading(true)
       setError(null)
 
-      const res = await axios.post("https://dummyjson.com/auth/login", { username, password })
+      const res = await axios.post("https://dummyjson.com/auth/login", {
+        username,
+        password
+      })
+
       const token = res.data.token
+
       setToken(token)
 
       if (remember) {
@@ -28,6 +34,7 @@ export const useAuth = () => {
         localStorage.removeItem("token")
         localStorage.removeItem("username")
       }
+
     } catch (e: any) {
       setError(e.response?.data?.message || "Ошибка входа")
     } finally {
@@ -43,12 +50,14 @@ export const useAuth = () => {
     setToken(null)
   }
 
-  const getToken = () => token
   const isLoggedIn = !!token
 
-  const getUsername = () => {
-    return localStorage.getItem("username") || sessionStorage.getItem("username") || ""
+  return {
+    login,
+    logout,
+    token,
+    isLoggedIn,
+    error,
+    isLoading
   }
-
-  return { login, logout, error, isLoading, token, getToken, isLoggedIn, getUsername }
 }

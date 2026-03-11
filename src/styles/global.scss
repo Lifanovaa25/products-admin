@@ -1,13 +1,13 @@
 @use "./fonts.scss";
-@use "./variables.scss";
+@use '@/styles/index.scss' as *;
 
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -20,8 +20,28 @@ button {
   font-family: inherit;
   cursor: pointer;
   border: none;
+  background: transparent;
 }
 
 input {
+  border: none;
+  background: transparent;
   font-family: inherit;
+  outline: none;
+  cursor: pointer;
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px $bg-color inset;
+    -webkit-text-fill-color: $color-title;
+    transition: background-color 5000s ease-in-out;
+  }
+
+  &::placeholder {
+    font-family: $font-primary;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 171%;
+    color: #999;
+  }
+
 }

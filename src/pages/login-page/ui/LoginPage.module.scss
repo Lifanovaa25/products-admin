@@ -15,7 +15,7 @@
   border-radius: $radius-xxl;
 
   &__content {
-    @include flex-column(32px);
+    @include flex-column(20px);
     align-items: center;
 
     padding: 48px;
@@ -29,7 +29,9 @@
   width: 52px;
   object-fit: contain;
 }
-
+.title_block {
+  margin-bottom: 12px;
+}
 .title {
   font-family: $font-primary;
   font-size: 40px;
@@ -158,7 +160,37 @@
     border-color: $color-primary;
     box-shadow: 0 0 0 3px rgba(36, 46, 219, 0.1);
   }
+  .divider {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 8px 0;
   
+    span {
+      font-size: 16px;
+      color: $color-gray-400;
+      padding: 0 10px;
+      white-space: nowrap;
+    }
+  
+    &::before,
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: $color-gray-300;
+    }
+  }
+  .register {
+    font-size: 18px;
+    color: $color-gray-500;
+    text-align: center;
+  
+    a {
+      color: $color-primary;
+      font-weight: 500;
+    }
+  }
   @keyframes shake {
     0% { transform: translateX(0); }
     25% { transform: translateX(-4px); }
@@ -166,6 +198,8 @@
     75% { transform: translateX(-4px); }
     100% { transform: translateX(0); }
   }
+
+
 @include mobile {
 
   .card__content {
