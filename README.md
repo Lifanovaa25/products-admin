@@ -1,126 +1,79 @@
-Админ-панель управления продуктами
-Описание проекта
+## Products Admin
 
-Проект представляет собой админ-панель для управления товарами. Включает:
+Небольшая админ‑панель для управления товарами, построенная на **React + TypeScript + Vite**.
 
-Авторизацию пользователей
+Приложение использует публичное API `https://dummyjson.com/products` и позволяет:
 
-Таблицу продуктов с сортировкой и поиском
+- **Просматривать список товаров** с пагинацией
+- **Искать** по названию
+- **Сортировать** по цене и рейтингу
+- **Выбирать товары чекбоксами**
+- **Добавлять новый товар** через модальное окно (локально, без сохранения на сервере)
+- **Видеть индикатор загрузки** (NProgress)
 
-Возможность добавления нового продукта
+---
 
-Архитектура построена по принципам Feature-Sliced Design (FSD), что обеспечивает масштабируемость, повторное использование кода и чистое разделение ответственности.
+### Стек (фактически используемый)
 
-Стек технологий
+- **React 19**, **TypeScript**
+- **Vite** — dev‑сервер и сборка
+- **SCSS‑модули** — стилизация таблицы, модалки и layout
+- **axios** — HTTP‑запросы к `https://dummyjson.com/products`
+- **nprogress** — индикатор загрузки при запросах
 
-React 18 – современный UI-фреймворк с компонентной архитектурой.
+> Библиотеки `react-hook-form`, `zod`, `react-query`, `react-router-dom`, `react-hot-toast` сейчас присутствуют только в зависимостях и **не используются в коде проекта**.
 
-TypeScript – строгая типизация для снижения ошибок и улучшения поддержки IDE.
+---
 
-Vite – быстрый сборщик с HMR для React + TypeScript проектов.
+### Запуск проекта
 
-React Router – управление клиентской маршрутизацией.
+```bash
+# установка зависимостей
+npm install
 
-Axios – удобный инструмент для HTTP-запросов с автоматическим JSON и обработкой ошибок.
+# режим разработки
+npm run dev
 
-React Query (TanStack Query) – управление серверным состоянием, кэширование, загрузка и синхронизация с API.
+# линтер
+npm run lint
 
-React Hook Form – производительная работа с формами.
+# production‑сборка
+npm run build
 
-Zod – схема валидации данных форм.
+# предпросмотр собранного приложения
+npm run preview
+```
 
-UI-библиотека (Material UI / Ant Design) – готовые компоненты интерфейса.
+По умолчанию Vite поднимает dev‑сервер на `http://localhost:5173`.
 
-React Hot Toast – уведомления о действиях пользователя (успешное создание продукта и ошибки).
+---
 
-Архитектурные решения
+### Основные модули
 
-Разделение API, UI-компонентов и фич-модулей.
+- `src/app` — точка входа приложения
+- `src/widgets/products-table` — таблица товаров и логика выбора, сортировки и пагинации
+- `src/entities/product` — хук `useProducts` для загрузки, поиска и сортировки
+- `src/features/auth/add-product` — модалка добавления товара (локальное добавление в список)
+- `src/shared/ui` — переиспользуемые UI‑компоненты (`Button`, `Loader`, `Toast` и т.п.)
 
-Токены авторизации хранятся в localStorage или sessionStorage в зависимости от опции "Запомнить данные":
+---
 
-Включено → localStorage (сессия сохраняется после закрытия браузера)
+### Короткий вариант README (для резюме)
 
-Выключено → sessionStorage (сессия сбрасывается при закрытии вкладки)
+```markdown
+## Products Admin
 
-Состояние сортировки и поиска хранится в React state для таблицы продуктов.
+Мини‑админка на React + TS + Vite для работы со списком товаров (dummyjson API):
 
-Используются Widgets для крупных UI-блоков (например, ProductsTable).
+- список, поиск, сортировка по цене и рейтингу;
+- выбор товаров чекбоксами;
+- добавление товара через модалку;
+- индикатор загрузки (nprogress).
 
-Features – действия пользователя (поиск, добавление продукта).
+Запуск:
 
-Entities – повторно используемые сущности (Product, User).
-
-Соответствие ТЗ
-Авторизация
-
-Папка: features/auth-by-username
-
-LoginForm
-
-useLogin
-
-Работает с API: entities/user/api
-
-Таблица товаров
-
-Папка: widgets/products-table
-Крупный UI-блок для отображения списка продуктов.
-
-Поиск
-
-Папка: features/product-search
-Feature, так как это пользовательское действие.
-
-Добавление продукта
-
-Папка: features/add-product
-
-AddProductModal
-
-useAddProduct
-
-Сущность продукта
-
-Папка: entities/product
-
-types
-
-api
-
-UI компоненты (ProductCard, ProductRating)
-
-Пример интерфейса Product:
-
-export interface Product {
-  id: number;
-  title: string;
-  price: number;
-  rating: number;
-  brand: string;
-  sku?: string;
-}
-
-Пример API:
-
-import axios from "axios";
-
-export const getProducts = async () => {
-  const res = await axios.get("https://dummyjson.com/products");
-  return res.data;
-};
-
-export const searchProducts = async (query: string) => {
-  const res = await axios.get(`https://dummyjson.com/products/search?q=${query}`);
-  return res.data;
-};
-
-Пример shared storage:
-
-export const saveToken = (token: string, remember: boolean) => {
-  if (remember) {
-    localStorage.setItem("token", token);
-  } else {
-    sessionStorage.setItem("token", token);
-  }
-};
+```bash
+npm install
+npm run dev
+```
+```

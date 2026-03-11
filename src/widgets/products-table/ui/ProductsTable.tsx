@@ -127,11 +127,11 @@ export const ProductsTable = () => {
               <th>Артикул</th>
 
               <th onClick={() => toggleSort("rating")}>
-                Оценка {sortField === "rating" && (sortOrder === "asc" ? "▲" : "▼")}
+                Оценка {sortField === "rating" && (sortOrder === "asc" ? "" : "")}
               </th>
 
               <th onClick={() => toggleSort("price")}>
-                Цена, ₽ {sortField === "price" && (sortOrder === "asc" ? "▲" : "▼")}
+                Цена, ₽ {sortField === "price" && (sortOrder === "asc" ? "" : "")}
               </th>
 
               <th></th>
