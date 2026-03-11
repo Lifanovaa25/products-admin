@@ -1,6 +1,14 @@
 import { useState, useEffect, useCallback } from "react"
 import axios from "axios"
-import { Product } from "./types"
+
+export type Product = {
+  id: number
+  title: string
+  price: number
+  brand: string
+  sku: string
+  rating: number
+}
 
 type SortField = "price" | "rating" | null
 type SortOrder = "asc" | "desc"
@@ -22,53 +30,54 @@ export const useProducts = () => {
 
     const skip = (page - 1) * limit
 
-
     let url = search
-      ? `https://dummyjson.com/products/search?q=${encodeURIComponent(search)}`
-      : "https://dummyjson.com/products"
-
-    // Создаём параметры запроса
-    const params = new URLSearchParams()
-    params.append("limit", limit.toString())
-    params.append("skip", skip.toString())
-    if (sortField) {
-      params.append("sortBy", sortField)
-      params.append("order", sortOrder)
-    }
-
-    const separator = url.includes("?") ? "&" : "?"
-    const fullUrl = `${url}${separator}${params.toString()}`
+      ? `https://dummyjson.com/products/search?q=${search}`
+      : `https://dummyjson.com/products`
 
     try {
-      const res = await axios.get(fullUrl)
-      setProducts(res.data.products)
+      const res = await axios.get(url, {
+        params: { limit, skip }
+      })
+
+      let list = res.data.products
+
+      if (sortField) {
+        list = [...list].sort((a, b) => {
+          const aVal = a[sortField]
+          const bVal = b[sortField]
+
+          return sortOrder === "asc"
+            ? aVal - bVal
+            : bVal - aVal
+        })
+      }
+
+      setProducts(list)
       setTotal(res.data.total)
-    } catch (error) {
-      console.error("Ошибка загрузки товаров:", error)
+
+    } catch (e) {
+      console.error(e)
       setProducts([])
-      setTotal(0)
     } finally {
       setIsLoading(false)
     }
-  }, [search, page, sortField, sortOrder, limit])
-
+  }, [search, page, sortField, sortOrder])
 
   useEffect(() => {
-    const debounce = setTimeout(() => fetchProducts(), 400)
+    const debounce = setTimeout(fetchProducts, 400)
     return () => clearTimeout(debounce)
   }, [fetchProducts])
 
   const addProduct = (product: Product) => {
     setProducts(prev => [
-      { ...product, id: Date.now(), rating: product.rating ?? 0 },
+      { ...product, id: Date.now() },
       ...prev
     ])
   }
 
-
   const toggleSort = (field: SortField) => {
     if (sortField === field) {
-      setSortOrder(prev => (prev === "asc" ? "desc" : "asc"))
+      setSortOrder(prev => prev === "asc" ? "desc" : "asc")
     } else {
       setSortField(field)
       setSortOrder("asc")
@@ -85,9 +94,9 @@ export const useProducts = () => {
     page,
     setPage,
     totalPages,
+    toggleSort,
     sortField,
     sortOrder,
-    toggleSort,
     addProduct,
     fetchProducts
   }

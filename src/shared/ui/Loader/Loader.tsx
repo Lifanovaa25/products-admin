@@ -1,16 +1,19 @@
-import React from "react";
-import s from "./Loader.module.scss";
+import { useEffect } from "react"
+import NProgress from "nprogress"
+import "nprogress/nprogress.css"
 
-interface LoaderProps {
-  isLoading: boolean;
+type Props = {
+  isLoading: boolean
 }
 
-export const Loader: React.FC<LoaderProps> = ({ isLoading }) => {
-  if (!isLoading) return null;
+export const Loader = ({ isLoading }: Props) => {
+  useEffect(() => {
+    if (isLoading) {
+      NProgress.start()
+    } else {
+      NProgress.done()
+    }
+  }, [isLoading])
 
-  return (
-    <div className={s.loaderOverlay}>
-      <div className={s.loader}></div>
-    </div>
-  );
-};
+  return null
+}

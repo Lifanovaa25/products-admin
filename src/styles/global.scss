@@ -45,3 +45,15 @@ input {
   }
 
 }
+#nprogress .bar {
+  background: #242edb;
+  height: 3px;
+}
+
+#nprogress .peg {
+  box-shadow: none;
+}
+
+#nprogress .spinner {
+  display: none;
+}
