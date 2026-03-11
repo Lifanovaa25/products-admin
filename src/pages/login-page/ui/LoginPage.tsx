@@ -44,7 +44,7 @@ export const LoginPage = () => {
     if (token) {
       navigate("/products")
     }
-  }, [token])
+  }, [token, navigate])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -59,7 +59,16 @@ export const LoginPage = () => {
 
     if (usernameError || passwordError) return
 
-    await login(username, password, remember)
+    const success = await login(username, password, remember)
+
+    if (success) {
+      navigate("/products")
+    } else {
+      setFieldError({
+        username: true,
+        password: true
+      })
+    }
   }
 
   return (

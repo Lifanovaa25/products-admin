@@ -35,8 +35,11 @@ export const useAuth = () => {
         localStorage.removeItem("username")
       }
 
+      return true
+
     } catch (e: any) {
       setError(e.response?.data?.message || "Ошибка входа")
+      return false
     } finally {
       setIsLoading(false)
     }
